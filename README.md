@@ -14,7 +14,7 @@
    - grant create session to app_user;
    - grant all privileges to app_user;
 
-### Running Application
+### Running Examples
 
 - Download the zip or clone the Git repository.
 - Unzip the zip file (if you downloaded one)
@@ -25,6 +25,8 @@
 - Choose the Spring Boot Application file (search for @SpringBootApplication)
 - Right Click on the file and Run as Java Application
 - You are all Set
-
+- Swagger can be access by visiting http://localhost:8081/swagger-ui.html in your browser
+- Also Postman collection can be access from https://www.getpostman.com/collections/c5e9f69861caff8fa074
+  
 ### Support
 - Email me khanshakil21@gmail.com
