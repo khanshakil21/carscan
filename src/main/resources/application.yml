@@ -1,0 +1,16 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    username: app_user
+    driver-class-name: oracle.jdbc.driver.OracleDriver    
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    password: cARSCAN#1
+
+spring.liquibase:
+  user: app_user
+  url: jdbc:oracle:thin:@localhost:1521:xe
+  password: cARSCAN#1
+  enabled: true
+  change-log: classpath:db/db.changelog-master.xml
