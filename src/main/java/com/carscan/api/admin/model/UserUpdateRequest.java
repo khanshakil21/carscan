@@ -12,11 +12,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserUpdateRequest {
 
-	@NotNull(message = "Please provide the user id for modification")
+	@NotNull(message = "id is required")
 	private Long id;
 
 	private String fname;
-	
+
 	private String lname;
 	
 	@ApiModelProperty(
@@ -25,7 +25,7 @@ public class UserUpdateRequest {
 			  dataType = "String",
 			  example = "9999999999")
 	private String mobileNumber;
-
+	
 	private String city;
 
 	@ApiModelProperty(

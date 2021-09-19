@@ -35,7 +35,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> handleException(Exception ex, WebRequest request, HttpServletResponse response) {
 		log.info("Converting Exception to RestResponse : " + ex.getMessage());
 		ex.printStackTrace();
-		ErrorBody body = new ErrorBody("ERR-300", "Processing Error");
+		ErrorBody body = new ErrorBody("ERR-200", "Processing Error");
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("application", "problem+json"));
 		return handleExceptionInternal(ex, body, headers, HttpStatus.INTERNAL_SERVER_ERROR, request);

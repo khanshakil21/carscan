@@ -1,5 +1,7 @@
 package com.carscan.api.admin.model;
 
+import javax.validation.constraints.NotNull;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserCreationRequest {	
 	
+	@NotNull(message = "fname is required")
 	private String fname;
 
 	private String lname;

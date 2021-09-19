@@ -20,10 +20,13 @@ import com.carscan.api.admin.model.UserDTO;
 import com.carscan.api.admin.model.UserUpdateRequest;
 import com.carscan.api.admin.service.UserService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "carscans/v1/user")
+@Api(tags = { "User Management" })
 @RequiredArgsConstructor
 public class UserController {
 
@@ -31,12 +34,14 @@ public class UserController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
+	@ApiOperation(value = "Create a user.", notes = "Returns the newly created user")
 	public UserDTO createUser(@RequestBody @Valid UserCreationRequest userCreationRequest) {
 		return new UserDTO(this.userService.createUser(userCreationRequest));
 	}
 
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
+	@ApiOperation(value = "Update a user.", notes = "Returns updated user")
 	public UserDTO updateUser(@RequestBody @Valid UserUpdateRequest userUpdateRequest) {
 
 		return new UserDTO(this.userService.updateUser(userUpdateRequest));
@@ -44,20 +49,24 @@ public class UserController {
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
+	@ApiOperation(value = "Get a all user list", notes = "The User list")
 	public AllUserResponse getAllUser() {
 		return new AllUserResponse(this.userService.getAllUser());
 	}
 
 	@GetMapping("{id}")
 	@ResponseStatus(HttpStatus.OK)
+	@ApiOperation(value = "Get a user", notes = "The User")
 	public UserDTO getUserById(@PathVariable("id") long id) {
 		return new UserDTO(this.userService.getUser(id));
 	}
 
 	@DeleteMapping("{id}")
 	@ResponseStatus(HttpStatus.OK)
+	@ApiOperation(value = "Delete a user ", notes = "Delete User")
 	public ResponseEntity<Boolean> delete(@PathVariable("id") long id) {
 		this.userService.deleteUser(id);
 		return ResponseEntity.ok().body(true);
 	}
+
 }

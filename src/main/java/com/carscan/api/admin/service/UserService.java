@@ -29,21 +29,19 @@ public class UserService {
 		log.info("===========User Creation ===========");
 		User user = new User(userCreationRequest);
 
-		return userRepository.save(user);
+		return this.save(user);
 	}
 
 	public User updateUser(UserUpdateRequest userUpdateRequest) {
-		log.info("===========User Update ======={} ",userUpdateRequest.getFname());
-		User user = getUser(userUpdateRequest.getId());
+		log.info("===========User Update ======={} ", userUpdateRequest.getFname());
+		User user = this.getUser(userUpdateRequest.getId());
 
 		BeanUtils.copyProperties(userUpdateRequest, user);
 
-		 LocalDate dob= userUpdateRequest.getDob() != null  
-					? DateUtils.fromString(userUpdateRequest.getDob())
-					: null;
-					
-		user.setDob(dob);				
-		return save(user);
+        LocalDate dob= userUpdateRequest.getDob() != null ? DateUtils.fromString(userUpdateRequest.getDob()): null;
+
+		user.setDob(dob);
+		return this.save(user);
 	}
 
 	public User save(User user) {
@@ -53,17 +51,16 @@ public class UserService {
 	public User getUser(long id) throws ResourceNotFoundException {
 		return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(" User id "+id +" not found"));
 	}
-
 	
 	public List<UserDTO> getAllUser() {
-		return userRepository.findAll(Sort.by(Sort.Direction.ASC, "id"))
+		return userRepository.findAll(Sort.by(Sort.Direction.DESC, "id"))
 							  .stream().map(UserDTO::new)
 							  .collect(Collectors.toList());
 	}
 
 	public void deleteUser(long id) {
 		log.info("===========User Delete ======{}=====", id);
-		getUser(id);
+		this.getUser(id);
 		userRepository.deleteById(id);
 	}
 }
