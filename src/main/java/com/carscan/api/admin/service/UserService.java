@@ -26,14 +26,14 @@ public class UserService {
 
 	private final UserRepository userRepository;
 	public User createUser(UserCreationRequest userCreationRequest) {
-		log.info("===========User Creation ===========");
+		log.info("===========User Creation ===========", userCreationRequest);
 		User user = new User(userCreationRequest);
 
 		return this.save(user);
 	}
 
 	public User updateUser(UserUpdateRequest userUpdateRequest) {
-		log.info("===========User Update ======={} ", userUpdateRequest.getFname());
+		log.info("===========User Update ======={} ", userUpdateRequest);
 		User user = this.getUser(userUpdateRequest.getId());
 
 		BeanUtils.copyProperties(userUpdateRequest, user);

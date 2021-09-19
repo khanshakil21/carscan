@@ -50,6 +50,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 											.collect(Collectors.joining(","));
 
 		ErrorBody body = new ErrorBody("ERR-300", message);
+
+		headers.setContentType(new MediaType("application", "problem+json"));
 		return handleExceptionInternal(ex, body, headers, HttpStatus.BAD_REQUEST, request);
 	}
 }
